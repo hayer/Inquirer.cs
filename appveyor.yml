@@ -15,9 +15,6 @@ branches:
 
 build:
   verbosity: minimal
-
-cache:
-  - Source\packages -> **\packages.config
   
 platform: Any CPU
 configuration: Release
@@ -28,13 +25,13 @@ pull_requests:
 artifacts:
   - path: \*.nupkg
     name: NuGet
-  - path: \Source\Inquirer\bin\$(configuration)
+  - path: \src\Inquirer\bin\$(configuration)
     name: Inquirer 
     type: zip
 
 
 before_build:
-  - nuget restore Source\Inquirer.sln
+  - nuget restore Inquirer.sln
 
 after_build:
 - ps: >-
@@ -73,5 +70,5 @@ notifications:
   to:
   - agolaszewski@agme.info
   on_build_success: false
-  on_build_failure: true
+  on_build_failure: false
   on_build_status_changed: false
