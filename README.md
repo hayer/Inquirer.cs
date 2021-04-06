@@ -15,9 +15,12 @@ Inquirer.cs
 ===========
 
 [![][build-img]][build]
-[![][nuget-img]][nuget]
+
 
 A collection of common interactive command line user interfaces.
+
+
+Forked from https://github.com/agolaszewski/Inquirer.cs and updated.
 
 Clone of [Inquirer.js](https://github.com/SBoudrias/Inquirer.js)
 
