@@ -6,6 +6,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Demo2</RootNamespace>
     <AssemblyName>Demo2</AssemblyName>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
