@@ -43,7 +43,10 @@ namespace Tests
             Assert.True(_fixture.Default.HasDefault);
             Assert.True(_fixture.Colors.Where(x => x.Item == ConsoleColor.Red).First().IsSelected);
             Assert.True(_fixture.Colors.Where(x => x.Item == ConsoleColor.Yellow).First().IsSelected);
-            Assert.All(_fixture.Colors.Where(x => x.Item != ConsoleColor.Red || x.Item != ConsoleColor.Yellow).Select(d => d.IsSelected), x => Assert.False(x));
+            Assert.All(
+                _fixture.Colors
+                    .Where(x => x.Item != ConsoleColor.Red && x.Item != ConsoleColor.Yellow),
+                i => Assert.False(i.IsSelected));
             Assert.Equal(2, _fixture.Colors.Where(x => x.IsSelected).Count());
         }
 
