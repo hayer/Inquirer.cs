@@ -9,6 +9,9 @@
     <PackageId>Inquirer.cs</PackageId>
     <Description>Inquirer.cs provides the user interface and the inquiry session flow</Description>
     <ProjectUrl>https://github.com/hayer/Inquirer.cs</ProjectUrl>
+    <RepositoryUrl>https://github.com/hayer/Inquirer.cs.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Tags>Inquirer</Tags>
   </PropertyGroup>
 
   <ItemGroup>
