@@ -21,6 +21,7 @@ jobs:
       with:
         versionSpec: '5.x'
     - name: Determine Version
+      id: gitversion
       uses: gittools/actions/gitversion/execute@v0.9.7
       with:
         useConfigFile: true
@@ -36,4 +37,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Pack
-      run: dotnet pack --no-build --verbosity normal
+      run: dotnet pack --no-build --verbosity normal -p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
