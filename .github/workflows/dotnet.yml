@@ -29,6 +29,8 @@ jobs:
     
     - name: Display GitVersion outputs
       run: |
+        echo "Test1: $GITVERSION_SEMVER"
+        echo "Test2: $GITVERSION_NUGETVERSIONV2"
         echo "Major: ${{ steps.gv.outputs.major }}"
         echo "Minor: ${{ steps.gv.outputs.minor }}"
         echo "Patch: ${{ steps.gv.outputs.patch }}"
