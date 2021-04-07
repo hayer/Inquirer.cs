@@ -46,3 +46,27 @@ jobs:
       with:
         name: phu.Inquirer.cs
         path: /home/runner/work/Inquirer.cs/Inquirer.cs/src/Inquirer/bin/Release/phu.Inquirer.cs.${{ steps.gv.outputs.nuGetVersionV2 }}.nupkg
+
+
+  publish_package:
+    name: Publish to nuget.org
+    needs: build
+    runs-on: ubuntu-latest
+
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Download build arctifact
+        uses: actions/download-artifact@v1
+        with:
+          name: phu.Inquirer.cs
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+      - name: Push package to nuget.org
+        run: dotnet nuget push ./phu.Inquirer.cs/phu.Inquirer.cs.${{ needs.build.outputs.nugetVerV2 }}.nupkg -k ${{ secrets.NUGET_ORG_API_KEY }} -s https://api.nuget.org/v3/index.json
+      - name: Tag commit
+        uses: tvdias/github-tagger@v0.0.1
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          tag: "${{ needs.build.outputs.semVer }}"
