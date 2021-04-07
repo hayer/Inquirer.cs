@@ -83,4 +83,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: phu.Inquirer.cs
-        path: Inquirer.cs/Inquirer.cs/src/Inquirer/bin/Release/phu.Inquirer.cs.${{ steps.gv.outputs.nuGetVersionV2 }}.nupkg
+        path: /home/runner/work/Inquirer.cs/Inquirer.cs/src/Inquirer/bin/Release/phu.Inquirer.cs.${{ steps.gv.outputs.nuGetVersionV2 }}.nupkg
