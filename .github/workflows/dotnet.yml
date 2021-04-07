@@ -10,8 +10,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      semVer: ${{ steps.gitversion.outputs.semVer }}
-      nugetVerV2: ${{ steps.gitverion.outputs.nuGetVersionV2 }}
+      semVer: ${{ steps.gv.outputs.semVer }}
+      nugetVerV2: ${{ steps.gv.outputs.nuGetVersionV2 }}
 
     steps:
     - name: Checkout
