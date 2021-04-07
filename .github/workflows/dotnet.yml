@@ -29,44 +29,6 @@ jobs:
         useConfigFile: true
       env:
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-    
-    - name: Display GitVersion outputs
-      run: |
-        echo "Test1: $GITVERSION_SEMVER"
-        echo "Test2: $GITVERSION_NUGETVERSIONV2"
-        echo "Major: ${{ steps.gv.outputs.major }}"
-        echo "Minor: ${{ steps.gv.outputs.minor }}"
-        echo "Patch: ${{ steps.gv.outputs.patch }}"
-        echo "PreReleaseTag: ${{ steps.gv.outputs.preReleaseTag }}"
-        echo "PreReleaseTagWithDash: ${{ steps.gv.outputs.preReleaseTagWithDash }}"
-        echo "PreReleaseLabel: ${{ steps.gv.outputs.preReleaseLabel }}"
-        echo "PreReleaseNumber: ${{ steps.gv.outputs.preReleaseNumber }}"
-        echo "WeightedPreReleaseNumber: ${{ steps.gv.outputs.weightedPreReleaseNumber }}"
-        echo "BuildMetaData: ${{ steps.gv.outputs.buildMetaData }}"
-        echo "BuildMetaDataPadded: ${{ steps.gv.outputs.buildMetaDataPadded }}"
-        echo "FullBuildMetaData: ${{ steps.gv.outputs.fullBuildMetaData }}"
-        echo "MajorMinorPatch: ${{ steps.gv.outputs.majorMinorPatch }}"
-        echo "SemVer: ${{ steps.gv.outputs.semVer }}"
-        echo "LegacySemVer: ${{ steps.gv.outputs.legacySemVer }}"
-        echo "LegacySemVerPadded: ${{ steps.gv.outputs.legacySemVerPadded }}"
-        echo "AssemblySemVer: ${{ steps.gv.outputs.assemblySemVer }}"
-        echo "AssemblySemFileVer: ${{ steps.gv.outputs.assemblySemFileVer }}"
-        echo "FullSemVer: ${{ steps.gv.outputs.fullSemVer }}"
-        echo "InformationalVersion: ${{ steps.gv.outputs.informationalVersion }}"
-        echo "BranchName: ${{ steps.gv.outputs.branchName }}"
-        echo "EscapedBranchName: ${{ steps.gv.outputs.escapedBranchName }}"
-        echo "Sha: ${{ steps.gv.outputs.sha }}"
-        echo "ShortSha: ${{ steps.gv.outputs.shortSha }}"
-        echo "NuGetVersionV2: ${{ steps.gv.outputs.nuGetVersionV2 }}"
-        echo "NuGetVersion: ${{ steps.gv.outputs.nuGetVersion }}"
-        echo "NuGetPreReleaseTagV2: ${{ steps.gv.outputs.nuGetPreReleaseTagV2 }}"
-        echo "NuGetPreReleaseTag: ${{ steps.gv.outputs.nuGetPreReleaseTag }}"
-        echo "VersionSourceSha: ${{ steps.gv.outputs.versionSourceSha }}"
-        echo "CommitsSinceVersionSource: ${{ steps.gv.outputs.commitsSinceVersionSource }}"
-        echo "CommitsSinceVersionSourcePadded: ${{ steps.gv.outputs.commitsSinceVersionSourcePadded }}"
-        echo "UncommittedChanges: ${{ steps.gv.outputs.uncommittedChanges }}"
-        echo "CommitDate: ${{ steps.gv.outputs.commitDate }}"
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
