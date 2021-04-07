@@ -17,12 +17,12 @@ jobs:
       with:
         fetch-depth: 0
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.9
+      uses: gittools/actions/gitversion/setup@v0.9.4
       with:
         versionSpec: '5.x'
     - name: Determine Version
       id: gv
-      uses: gittools/actions/gitversion/execute@v0.9.9
+      uses: gittools/actions/gitversion/execute@v0.9.4
       with:
         useConfigFile: true
         additionalArguments: '/showConfig'
@@ -71,7 +71,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore -p:Version=${{ steps.gv.outputs.semVer }}
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Pack
