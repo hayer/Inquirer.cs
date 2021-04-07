@@ -2,14 +2,16 @@ name: .NET
 
 on:
   push:
-    branches: [ master ]
+    branches: [ '*' ]
   pull_request:
     branches: [ master ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    outputs:
+      semVer: ${{ steps.gitversion.outputs.semVer }}
+      nugetVerV2: ${{ steps.gitverion.outputs.nuGetVersionV2 }}
 
     steps:
     - name: Checkout
@@ -72,8 +74,13 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore -p:Version=${{ steps.gv.outputs.semVer }}
+      run: dotnet build --no-restore -c release -p:Version=${{ steps.gv.outputs.semVer }}
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Pack
       run: dotnet pack --no-build --verbosity normal -p:PackageVersion=${{ steps.gv.outputs.nuGetVersionV2 }}
+    - name: Upload to feed
+      uses: actions/upload-artifact@v2
+      with:
+        name: phu.Inquirer.cs
+        path: Inquirer.cs/Inquirer.cs/src/Inquirer/bin/Debug/phu.Inquirer.cs.${{ steps.gv.outputs.nuGetVersionV2 }}.nupkg
