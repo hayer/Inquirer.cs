@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IPagingTrait<TResult>
 {
-    public interface IPagingTrait<TResult>
-    {
-        IPagingComponent<TResult> Paging { get; set; }
-    }
+    IPagingComponent<TResult> Paging { get; set; }
 }

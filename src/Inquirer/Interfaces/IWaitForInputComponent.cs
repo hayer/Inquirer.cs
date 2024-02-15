@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace InquirerCS.Interfaces
+namespace InquirerCS.Interfaces;
+
+public interface IWaitForInputComponent<TInput>
 {
-    public interface IWaitForInputComponent<TInput>
-    {
-        Func<char, bool> AllowTypeFn { get; set; }
+    Func<char, bool> AllowTypeFn { get; set; }
 
-        List<ConsoleKey> IntteruptedKeys { get; set; }
+    List<ConsoleKey> IntteruptedKeys { get; set; }
 
-        TInput WaitForInput();
-    }
+    TInput WaitForInput();
 }

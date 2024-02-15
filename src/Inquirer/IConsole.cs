@@ -1,33 +1,32 @@
 ﻿using System;
 
-namespace InquirerCS
+namespace InquirerCS;
+
+public interface IConsole
 {
-    public interface IConsole
-    {
-        int CursorLeft { get; }
+    int CursorLeft { get; }
 
-        int CursorTop { get; }
+    int CursorTop { get; }
 
-        void Clear();
+    void Clear();
 
-        void PositionWrite(string text, int x = 0, int y = 0, ConsoleColor color = ConsoleColor.White);
+    void PositionWrite(string text, int x = 0, int y = 0, ConsoleColor color = ConsoleColor.White);
 
-        void PositionWriteLine(string text, int x = 0, int y = 0, ConsoleColor color = ConsoleColor.White);
+    void PositionWriteLine(string text, int x = 0, int y = 0, ConsoleColor color = ConsoleColor.White);
 
-        string Read();
+    string Read();
 
-        string Read(out ConsoleKey? intteruptedKey, Func<char, bool> allowTypeFn, params ConsoleKey[] interruptKeys);
+    string Read(out ConsoleKey? intteruptedKey, Func<char, bool> allowTypeFn, params ConsoleKey[] interruptKeys);
 
-        ConsoleKeyInfo ReadKey();
+    ConsoleKeyInfo ReadKey();
 
-        ConsoleKeyInfo ReadKey(out bool isCanceled);
+    ConsoleKeyInfo ReadKey(out bool isCanceled);
 
-        void SetCursorPosition(int v, int cursorTop);
+    void SetCursorPosition(int v, int cursorTop);
 
-        void Write(string text, ConsoleColor color = ConsoleColor.White);
+    void Write(string text, ConsoleColor color = ConsoleColor.White);
 
-        void WriteError(string error);
+    void WriteError(string error);
 
-        void WriteLine(string text = " ", ConsoleColor color = ConsoleColor.White);
-    }
+    void WriteLine(string text = " ", ConsoleColor color = ConsoleColor.White);
 }

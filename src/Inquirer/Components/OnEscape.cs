@@ -1,19 +1,18 @@
 ﻿using System;
 using InquirerCS.Interfaces;
 
-namespace InquirerCS.Components
+namespace InquirerCS.Components;
+
+internal class OnEscape : IOnKey
 {
-    internal class OnEscape : IOnKey
+    public OnEscape()
     {
-        public OnEscape()
-        {
         }
 
-        public bool IsInterrupted { get; set; }
+    public bool IsInterrupted { get; set; }
 
-        public void OnKey(ConsoleKey? key)
-        {
+    public void OnKey(ConsoleKey? key)
+    {
             IsInterrupted = key == ConsoleKey.Escape;
         }
-    }
 }

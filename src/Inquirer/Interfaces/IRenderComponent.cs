@@ -1,7 +1,6 @@
-﻿namespace InquirerCS.Interfaces
+﻿namespace InquirerCS.Interfaces;
+
+public interface IRenderQuestionComponent
 {
-    public interface IRenderQuestionComponent
-    {
-        void Render();
-    }
+    void Render();
 }

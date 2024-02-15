@@ -1,7 +1,6 @@
-﻿namespace InquirerCS.Interfaces
+﻿namespace InquirerCS.Interfaces;
+
+public interface IQuestion<TResult>
 {
-    public interface IQuestion<TResult>
-    {
-        TResult Prompt();
-    }
+    TResult Prompt();
 }

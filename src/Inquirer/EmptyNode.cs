@@ -1,20 +1,19 @@
 ﻿using System;
 
-namespace InquirerCS
+namespace InquirerCS;
+
+public class EmptyNode : BaseNode
 {
-    public class EmptyNode : BaseNode
+    public EmptyNode() : base()
     {
-        public EmptyNode() : base()
-        {
-        }
+    }
 
-        public override bool Run()
-        {
-            return true;
-        }
+    public override bool Run()
+    {
+        return true;
+    }
 
-        internal override void After(Action after)
-        {
-        }
+    internal override void After(Action after)
+    {
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace InquirerCS.Interfaces
+namespace InquirerCS.Interfaces;
+
+public interface IThen
 {
-    public interface IThen
-    {
-        void After(Action after);
-    }
+    void After(Action after);
 }

@@ -1,22 +1,21 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Components
+namespace InquirerCS.Components;
+
+internal class ValidationResult : IValidationResult
 {
-    internal class ValidationResult : IValidationResult
+    public ValidationResult()
     {
-        public ValidationResult()
-        {
             HasError = false;
         }
 
-        public ValidationResult(string errorMessage)
-        {
+    public ValidationResult(string errorMessage)
+    {
             HasError = true;
             ErrorMessage = errorMessage;
         }
 
-        public string ErrorMessage { get; }
+    public string ErrorMessage { get; }
 
-        public bool HasError { get; }
-    }
+    public bool HasError { get; }
 }

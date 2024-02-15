@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace InquirerCS.Interfaces
+namespace InquirerCS.Interfaces;
+
+public interface IConvertToStringComponent<TResult>
 {
-    public interface IConvertToStringComponent<TResult>
-    {
-        Func<TResult, string> Run { get; }
-    }
+    Func<TResult, string> Run { get; }
 }

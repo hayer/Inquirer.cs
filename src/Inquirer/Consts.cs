@@ -1,7 +1,6 @@
-﻿namespace InquirerCS
+﻿namespace InquirerCS;
+
+internal class Consts
 {
-    internal class Consts
-    {
-        public static int CURSOR_OFFSET { get; set; } = 2;
-    }
+    public static int CURSOR_OFFSET { get; set; } = 2;
 }

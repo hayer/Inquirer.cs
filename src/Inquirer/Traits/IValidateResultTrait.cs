@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IValidateResultTrait<T>
 {
-    public interface IValidateResultTrait<T>
-    {
-        IValidateComponent<T> ResultValidators { get; set; }
-    }
+    IValidateComponent<T> ResultValidators { get; set; }
 }

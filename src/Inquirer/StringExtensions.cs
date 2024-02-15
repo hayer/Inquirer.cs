@@ -1,29 +1,28 @@
 ﻿using System.ComponentModel;
 
-namespace InquirerCS
+namespace InquirerCS;
+
+internal static class StringExtensions
 {
-    internal static class StringExtensions
+    internal static T To<T>(this string source)
     {
-        internal static T To<T>(this string source)
-        {
-            return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromInvariantString(source);
-        }
+        return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromInvariantString(source);
+    }
 
-        internal static T? ToN<T>(this string source) where T : struct
+    internal static T? ToN<T>(this string source) where T : struct
+    {
+        if (!string.IsNullOrWhiteSpace(source))
         {
-            if (!string.IsNullOrWhiteSpace(source))
+            try
             {
-                try
-                {
-                    return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromInvariantString(source);
-                }
-                catch
-                {
-                    return null;
-                }
+                return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromInvariantString(source);
             }
-
-            return null;
+            catch
+            {
+                return null;
+            }
         }
+
+        return null;
     }
 }

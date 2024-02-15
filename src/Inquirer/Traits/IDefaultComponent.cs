@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IDefaultTrait<TResult>
 {
-    public interface IDefaultTrait<TResult>
-    {
-        IDefaultValueComponent<TResult> Default { get; set; }
-    }
+    IDefaultValueComponent<TResult> Default { get; set; }
 }

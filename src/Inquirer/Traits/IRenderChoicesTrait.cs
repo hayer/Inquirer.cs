@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IRenderChoicesTrait<TResult>
 {
-    public interface IRenderChoicesTrait<TResult>
-    {
-        IRenderChoices<TResult> RenderChoices { get; set; }
-    }
+    IRenderChoices<TResult> RenderChoices { get; set; }
 }

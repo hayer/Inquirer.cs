@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 
-namespace InquirerCS.Interfaces
+namespace InquirerCS.Interfaces;
+
+public interface IPagingComponent<TResult>
 {
-    public interface IPagingComponent<TResult>
-    {
-        List<TResult> CurrentPage { get; }
+    List<TResult> CurrentPage { get; }
 
-        int CurrentPageNumber { get; }
+    int CurrentPageNumber { get; }
 
-        Dictionary<int, List<TResult>> PagedChoices { get; }
+    Dictionary<int, List<TResult>> PagedChoices { get; }
 
-        bool Next();
+    bool Next();
 
-        bool Previous();
-    }
+    bool Previous();
 }

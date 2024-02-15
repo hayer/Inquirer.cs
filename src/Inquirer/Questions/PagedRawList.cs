@@ -2,45 +2,45 @@
 using InquirerCS.Components;
 using InquirerCS.Interfaces;
 
-namespace InquirerCS.Questions
+namespace InquirerCS.Questions;
+
+public class PagedRawList<TResult> : IQuestion<TResult>
 {
-    public class PagedRawList<TResult> : IQuestion<TResult>
+    private IConfirmComponent<TResult> _confirmComponent;
+
+    private IConsole _console;
+
+    private IRenderQuestionComponent _displayQuestion;
+
+    private IDisplayErrorComponent _errorComponent;
+
+    private IWaitForInputComponent<StringOrKey> _inputComponent;
+
+    private IOnKey _onKey;
+
+    private IPagingComponent<TResult> _pagingComponent;
+
+    private IParseComponent<string, TResult> _parseComponent;
+
+    private IRenderChoices<TResult> _renderChoices;
+
+    private IValidateComponent<string> _validationInputComponent;
+
+    private IValidateComponent<TResult> _validationResultComponent;
+
+    public PagedRawList(
+        IPagingComponent<TResult> pagingComponent,
+        IConfirmComponent<TResult> confirmComponent,
+        IRenderQuestionComponent displayQuestion,
+        IWaitForInputComponent<StringOrKey> inputComponent,
+        IParseComponent<string, TResult> parseComponent,
+        IRenderChoices<TResult> renderChoices,
+        IValidateComponent<TResult> validationResultComponent,
+        IValidateComponent<string> validationInputComponent,
+        IDisplayErrorComponent errorComponent,
+        IOnKey onKey,
+        IConsole console)
     {
-        private IConfirmComponent<TResult> _confirmComponent;
-
-        private IConsole _console;
-
-        private IRenderQuestionComponent _displayQuestion;
-
-        private IDisplayErrorComponent _errorComponent;
-
-        private IWaitForInputComponent<StringOrKey> _inputComponent;
-
-        private IOnKey _onKey;
-
-        private IPagingComponent<TResult> _pagingComponent;
-
-        private IParseComponent<string, TResult> _parseComponent;
-
-        private IRenderChoices<TResult> _renderChoices;
-
-        private IValidateComponent<string> _validationInputComponent;
-
-        private IValidateComponent<TResult> _validationResultComponent;
-
-        public PagedRawList(
-            IPagingComponent<TResult> pagingComponent,
-            IConfirmComponent<TResult> confirmComponent,
-            IRenderQuestionComponent displayQuestion,
-            IWaitForInputComponent<StringOrKey> inputComponent,
-            IParseComponent<string, TResult> parseComponent,
-            IRenderChoices<TResult> renderChoices,
-            IValidateComponent<TResult> validationResultComponent,
-            IValidateComponent<string> validationInputComponent,
-            IDisplayErrorComponent errorComponent,
-            IOnKey onKey,
-            IConsole console)
-        {
             _pagingComponent = pagingComponent;
             _confirmComponent = confirmComponent;
             _displayQuestion = displayQuestion;
@@ -56,8 +56,8 @@ namespace InquirerCS.Questions
             Console.CursorVisible = false;
         }
 
-        public TResult Prompt()
-        {
+    public TResult Prompt()
+    {
             _displayQuestion.Render();
 
             if (_pagingComponent.PagedChoices.Count == 0)
@@ -116,5 +116,4 @@ namespace InquirerCS.Questions
 
             return result;
         }
-    }
 }

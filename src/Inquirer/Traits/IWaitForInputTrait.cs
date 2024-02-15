@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IWaitForInputTrait<TResult>
 {
-    public interface IWaitForInputTrait<TResult>
-    {
-        IWaitForInputComponent<TResult> Input { get; set; }
-    }
+    IWaitForInputComponent<TResult> Input { get; set; }
 }

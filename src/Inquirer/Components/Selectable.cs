@@ -1,15 +1,14 @@
-﻿namespace InquirerCS.Components
+﻿namespace InquirerCS.Components;
+
+public class Selectable<T>
 {
-    public class Selectable<T>
+    internal Selectable(bool isSelected, T item)
     {
-        internal Selectable(bool isSelected, T item)
-        {
             Item = item;
             IsSelected = isSelected;
         }
 
-        public bool IsSelected { get; set; }
+    public bool IsSelected { get; set; }
 
-        public T Item { get; }
-    }
+    public T Item { get; }
 }

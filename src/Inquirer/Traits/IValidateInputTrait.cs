@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IValidateInputTrait<TInput>
 {
-    public interface IValidateInputTrait<TInput>
-    {
-        IValidateComponent<TInput> InputValidators { get; set; }
-    }
+    IValidateComponent<TInput> InputValidators { get; set; }
 }
