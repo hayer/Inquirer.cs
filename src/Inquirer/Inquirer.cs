@@ -10,13 +10,6 @@ namespace InquirerCS;
 
 public static class Inquirer
 {
-    private static AppConsole _console;
-
-    static Inquirer()
-    {
-        _console = new AppConsole();
-    }
-
     public static Node<CheckboxBuilder<TResult>, Checkbox<List<TResult>, TResult>, List<TResult>> Prompt<TResult>(CheckboxBuilder<TResult> builder)
     {
         return Prompt<CheckboxBuilder<TResult>, Checkbox<List<TResult>, TResult>, List<TResult>>(builder);

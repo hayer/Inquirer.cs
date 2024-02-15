@@ -15,7 +15,7 @@ internal class Program
 {
     private static List<ComplexClass> _complexClassList;
 
-    private static void Main(string[] args)
+    private static void Main()
     {
         _complexClassList = Enum.GetValues(typeof(ConsoleColor)).Cast<ConsoleColor>().Select(item => new ComplexClass()
         {
@@ -29,18 +29,18 @@ internal class Program
     public static void Menu()
     {
         Question.Menu("Menu")
-            .AddOption("Input", () => Input())
-            .AddOption("InputInt", () => InputInt())
-            .AddOption("Checkbox", () => Checkbox())
-            .AddOption("CheckboxPaged", () => CheckboxPaged())
-            .AddOption("Confirm", () => Confirm())
-            .AddOption("Extended", () => Extended())
-            .AddOption("ExtendedList", () => ExtendedList())
-            .AddOption("List", () => List())
-            .AddOption("PagedList", () => PagedList())
-            .AddOption("RawList", () => PagedList())
-            .AddOption("PagedRawList", () => PagedRawList())
-            .AddOption("Password", () => Password())
+            .AddOption("Input", Input)
+            .AddOption("InputInt", InputInt)
+            .AddOption("Checkbox", Checkbox)
+            .AddOption("CheckboxPaged", CheckboxPaged)
+            .AddOption("Confirm", Confirm)
+            .AddOption("Extended", Extended)
+            .AddOption("ExtendedList", ExtendedList)
+            .AddOption("List", List)
+            .AddOption("PagedList", PagedList)
+            .AddOption("RawList", PagedList)
+            .AddOption("PagedRawList", PagedRawList)
+            .AddOption("Password", Password)
             .AddOption("Exit", () => { })
             .Prompt();
     }
