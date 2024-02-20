@@ -1,57 +1,56 @@
 ﻿using System.Collections.Generic;
 
-namespace InquirerCS
+namespace InquirerCS;
+
+public class NavigationList<T> where T : class
 {
-    public class NavigationList<T> where T : class
+    private int _currentIndex = 0;
+
+    private List<T> _list = new List<T>();
+
+    public T Current
     {
-        private int _currentIndex = 0;
-
-        private List<T> _list = new List<T>();
-
-        public T Current
+        get
         {
-            get
+            if (_currentIndex < _list.Count)
             {
-                if (_currentIndex < _list.Count)
-                {
-                    return _list[_currentIndex];
-                }
-
-                return null;
+                return _list[_currentIndex];
             }
-        }
 
-        public T Next
+            return null;
+        }
+    }
+
+    public T Next
+    {
+        get
         {
-            get
+            if (_currentIndex + 1 < _list.Count)
             {
-                if (_currentIndex + 1 < _list.Count)
-                {
-                    _currentIndex++;
-                    return _list[_currentIndex];
-                }
-
-                return null;
+                _currentIndex++;
+                return _list[_currentIndex];
             }
-        }
 
-        public T Previous
+            return null;
+        }
+    }
+
+    public T Previous
+    {
+        get
         {
-            get
+            if (_currentIndex - 1 >= 0)
             {
-                if (_currentIndex - 1 >= 0)
-                {
-                    _currentIndex--;
-                    return _list[_currentIndex];
-                }
-
-                return null;
+                _currentIndex--;
+                return _list[_currentIndex];
             }
-        }
 
-        public void Add(T item)
-        {
-            _list.Add(item);
+            return null;
         }
+    }
+
+    public void Add(T item)
+    {
+        _list.Add(item);
     }
 }

@@ -1,9 +1,8 @@
-﻿namespace InquirerCS.Interfaces
-{
-    public interface IValidationResult
-    {
-        string ErrorMessage { get; }
+﻿namespace InquirerCS.Interfaces;
 
-        bool HasError { get; }
-    }
+public interface IValidationResult
+{
+    string ErrorMessage { get; }
+
+    bool HasError { get; }
 }

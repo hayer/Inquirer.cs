@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IDisplayErrorTrait
 {
-    public interface IDisplayErrorTrait
-    {
-        IDisplayErrorComponent DisplayError { get; set; }
-    }
+    IDisplayErrorComponent DisplayError { get; set; }
 }

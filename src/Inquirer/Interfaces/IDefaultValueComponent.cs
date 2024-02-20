@@ -1,9 +1,8 @@
-﻿namespace InquirerCS.Interfaces
-{
-    public interface IDefaultValueComponent<TResult>
-    {
-        bool HasDefault { get; }
+﻿namespace InquirerCS.Interfaces;
 
-        TResult Value { get; }
-    }
+public interface IDefaultValueComponent<TResult>
+{
+    bool HasDefault { get; }
+
+    TResult Value { get; }
 }

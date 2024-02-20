@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IOnKeyTrait
 {
-    public interface IOnKeyTrait
-    {
-        IOnKey OnKey { get; set; }
-    }
+    IOnKey OnKey { get; set; }
 }

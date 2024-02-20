@@ -1,11 +1,10 @@
 ﻿using System;
 
-namespace InquirerCS.Interfaces
-{
-    public interface IOnKey
-    {
-        bool IsInterrupted { get; }
+namespace InquirerCS.Interfaces;
 
-        void OnKey(ConsoleKey? key);
-    }
+public interface IOnKey
+{
+    bool IsInterrupted { get; }
+
+    void OnKey(ConsoleKey? key);
 }

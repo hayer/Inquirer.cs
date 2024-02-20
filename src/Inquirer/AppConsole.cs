@@ -2,56 +2,56 @@
 using System.Linq;
 using System.Text;
 
-namespace InquirerCS
+namespace InquirerCS;
+
+internal class AppConsole : IConsole
 {
-    internal class AppConsole : IConsole
+    public int CursorLeft
     {
-        public int CursorLeft
+        get
         {
-            get
-            {
                 return Console.CursorLeft;
             }
-        }
+    }
 
-        public int CursorTop
+    public int CursorTop
+    {
+        get
         {
-            get
-            {
                 return Console.CursorTop;
             }
-        }
+    }
 
-        public void Clear()
-        {
+    public void Clear()
+    {
             Console.Clear();
         }
 
-        public void PositionWrite(string text, int x = 0, int y = 0, ConsoleColor color = ConsoleColor.White)
-        {
+    public void PositionWrite(string text, int x = 0, int y = 0, ConsoleColor color = ConsoleColor.White)
+    {
             Console.SetCursorPosition(x, y);
             Write(text, color);
         }
 
-        public void PositionWrite(string v, object cursorLeft, int cursorTop)
-        {
+    public void PositionWrite(string v, object cursorLeft, int cursorTop)
+    {
             throw new NotImplementedException();
         }
 
-        public void PositionWriteLine(string text, int x = 0, int y = 0, ConsoleColor color = ConsoleColor.White)
-        {
+    public void PositionWriteLine(string text, int x = 0, int y = 0, ConsoleColor color = ConsoleColor.White)
+    {
             Console.SetCursorPosition(x, y);
             WriteLine(text, color);
         }
 
-        public string Read()
-        {
+    public string Read()
+    {
             ConsoleKey? interruptKey;
             return Read(out interruptKey, value => { return true; });
         }
 
-        public string Read(out ConsoleKey? intteruptedKey, Func<char, bool> allowTypeFn, params ConsoleKey[] interruptKeys)
-        {
+    public string Read(out ConsoleKey? intteruptedKey, Func<char, bool> allowTypeFn, params ConsoleKey[] interruptKeys)
+    {
             intteruptedKey = null;
 
             StringBuilder stringBuilder = new StringBuilder();
@@ -127,13 +127,13 @@ namespace InquirerCS
             return stringBuilder.ToString();
         }
 
-        public ConsoleKeyInfo ReadKey()
-        {
+    public ConsoleKeyInfo ReadKey()
+    {
             return Console.ReadKey();
         }
 
-        public ConsoleKeyInfo ReadKey(out bool isCanceled)
-        {
+    public ConsoleKeyInfo ReadKey(out bool isCanceled)
+    {
             isCanceled = false;
 
             var key = Console.ReadKey();
@@ -145,31 +145,30 @@ namespace InquirerCS
             return key;
         }
 
-        public void SetCursorPosition(int x, int y)
-        {
+    public void SetCursorPosition(int x, int y)
+    {
             Console.SetCursorPosition(x, y);
         }
 
-        public void Write(string text, ConsoleColor color = ConsoleColor.White)
-        {
+    public void Write(string text, ConsoleColor color = ConsoleColor.White)
+    {
             Console.ForegroundColor = color;
             Console.Write(text);
             Console.ResetColor();
         }
 
-        public void WriteError(string error)
-        {
+    public void WriteError(string error)
+    {
             Write(">> ", ConsoleColor.Red);
             Write(error);
             WriteLine(string.Empty);
             Write("Press any key to continue");
         }
 
-        public void WriteLine(string text = " ", ConsoleColor color = ConsoleColor.White)
-        {
+    public void WriteLine(string text = " ", ConsoleColor color = ConsoleColor.White)
+    {
             Console.ForegroundColor = color;
             Console.WriteLine(text);
             Console.ResetColor();
         }
-    }
 }

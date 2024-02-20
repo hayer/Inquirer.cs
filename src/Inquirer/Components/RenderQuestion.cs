@@ -2,38 +2,37 @@
 using InquirerCS.Interfaces;
 using InquirerCS.Traits;
 
-namespace InquirerCS.Components
+namespace InquirerCS.Components;
+
+internal class RenderQuestion<TResult> : IRenderQuestionComponent
 {
-    internal class RenderQuestion<TResult> : IRenderQuestionComponent
+    private IConsole _console;
+
+    private IConvertToStringTrait<TResult> _convert;
+
+    private IDefaultTrait<TResult> _default;
+
+    private string _message;
+
+    public RenderQuestion(string message, IConvertToStringTrait<TResult> convert, IDefaultTrait<TResult> @default, IConsole console)
     {
-        private IConsole _console;
+        _message = message;
+        _convert = convert;
+        _default = @default;
+        _console = console;
+    }
 
-        private IConvertToStringTrait<TResult> _convert;
-
-        private IDefaultTrait<TResult> _default;
-
-        private string _message;
-
-        public RenderQuestion(string message, IConvertToStringTrait<TResult> convert, IDefaultTrait<TResult> @default, IConsole console)
+    public void Render()
+    {
+        _console.Clear();
+        _console.Write("[?] ", ConsoleColor.Yellow);
+        var question = $"{_message} : ";
+        if (_default.Default.HasDefault)
         {
-            _message = message;
-            _convert = convert;
-            _default = @default;
-            _console = console;
+            question += $"[{_convert.Convert.Run(_default.Default.Value)}] ";
         }
 
-        public void Render()
-        {
-            _console.Clear();
-            _console.Write("[?] ", ConsoleColor.Yellow);
-            var question = $"{_message} : ";
-            if (_default.Default.HasDefault)
-            {
-                question += $"[{_convert.Convert.Run(_default.Default.Value)}] ";
-            }
-
-            _console.Write(question);
-            Consts.CURSOR_OFFSET = _console.CursorTop + 2;
-        }
+        _console.Write(question);
+        Consts.CURSOR_OFFSET = _console.CursorTop + 2;
     }
 }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ProjectGuid>{D9EFEA4B-C3A8-4237-82C7-4A91B8341BE8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>InquirerCS</RootNamespace>
@@ -13,10 +13,5 @@
     <RepositoryType>git</RepositoryType>
     <Tags>Inquirer</Tags>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Graph" Version="3.29.0" />
-    <PackageReference Include="Microsoft.Graph.Auth" Version="1.0.0-preview.6" />
-  </ItemGroup>
 
 </Project>

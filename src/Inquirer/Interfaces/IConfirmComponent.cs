@@ -1,7 +1,6 @@
-﻿namespace InquirerCS.Interfaces
+﻿namespace InquirerCS.Interfaces;
+
+public interface IConfirmComponent<TResult>
 {
-    public interface IConfirmComponent<TResult>
-    {
-        bool Confirm(TResult result);
-    }
+    bool Confirm(TResult result);
 }

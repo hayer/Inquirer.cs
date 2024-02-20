@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IRenderQuestionTrait
 {
-    public interface IRenderQuestionTrait
-    {
-        IRenderQuestionComponent RenderQuestion { get; set; }
-    }
+    IRenderQuestionComponent RenderQuestion { get; set; }
 }

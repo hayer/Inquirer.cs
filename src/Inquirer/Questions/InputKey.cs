@@ -2,103 +2,102 @@
 using InquirerCS.Components;
 using InquirerCS.Interfaces;
 
-namespace InquirerCS.Questions
+namespace InquirerCS.Questions;
+
+public class InputKey<TResult> : IQuestion<TResult>
 {
-    public class InputKey<TResult> : IQuestion<TResult>
+    private IConfirmComponent<TResult> _confirmComponent;
+
+    private IDefaultValueComponent<TResult> _defaultValueComponent;
+
+    private IRenderQuestionComponent _displayQuestion;
+
+    private IDisplayErrorComponent _errorComponent;
+
+    private IWaitForInputComponent<StringOrKey> _input;
+
+    private IOnKey _onKey;
+
+    private IParseComponent<ConsoleKey, TResult> _parseComponent;
+
+    private IValidateComponent<TResult> _validationResultComponent;
+
+    private IValidateComponent<ConsoleKey> _validationValueComponent;
+
+    public InputKey(
+        IConfirmComponent<TResult> confirmComponent,
+        IRenderQuestionComponent displayQuestion,
+        IWaitForInputComponent<StringOrKey> inputComponent,
+        IParseComponent<ConsoleKey, TResult> parseComponent,
+        IValidateComponent<TResult> validationResultComponent,
+        IValidateComponent<ConsoleKey> validationValueComponent,
+        IDisplayErrorComponent errorComponent,
+        IDefaultValueComponent<TResult> defaultComponent,
+        IOnKey onKey)
     {
-        private IConfirmComponent<TResult> _confirmComponent;
+        _confirmComponent = confirmComponent;
+        _displayQuestion = displayQuestion;
+        _input = inputComponent;
+        _parseComponent = parseComponent;
+        _validationResultComponent = validationResultComponent;
+        _validationValueComponent = validationValueComponent;
+        _errorComponent = errorComponent;
+        _defaultValueComponent = defaultComponent;
+        _onKey = onKey;
 
-        private IDefaultValueComponent<TResult> _defaultValueComponent;
+        Console.CursorVisible = true;
+    }
 
-        private IRenderQuestionComponent _displayQuestion;
+    public TResult Prompt()
+    {
+        _displayQuestion.Render();
 
-        private IDisplayErrorComponent _errorComponent;
-
-        private IWaitForInputComponent<StringOrKey> _input;
-
-        private IOnKey _onKey;
-
-        private IParseComponent<ConsoleKey, TResult> _parseComponent;
-
-        private IValidateComponent<TResult> _validationResultComponent;
-
-        private IValidateComponent<ConsoleKey> _validationValueComponent;
-
-        public InputKey(
-            IConfirmComponent<TResult> confirmComponent,
-            IRenderQuestionComponent displayQuestion,
-            IWaitForInputComponent<StringOrKey> inputComponent,
-            IParseComponent<ConsoleKey, TResult> parseComponent,
-            IValidateComponent<TResult> validationResultComponent,
-            IValidateComponent<ConsoleKey> validationValueComponent,
-            IDisplayErrorComponent errorComponent,
-            IDefaultValueComponent<TResult> defaultComponent,
-              IOnKey onKey)
+        var value = _input.WaitForInput().InterruptKey.Value;
+        _onKey.OnKey(value);
+        if (_onKey.IsInterrupted)
         {
-            _confirmComponent = confirmComponent;
-            _displayQuestion = displayQuestion;
-            _input = inputComponent;
-            _parseComponent = parseComponent;
-            _validationResultComponent = validationResultComponent;
-            _validationValueComponent = validationValueComponent;
-            _errorComponent = errorComponent;
-            _defaultValueComponent = defaultComponent;
-            _onKey = onKey;
-
-            Console.CursorVisible = true;
+            return default(TResult);
         }
 
-        public TResult Prompt()
+        if (value == ConsoleKey.Enter && _defaultValueComponent.HasDefault)
         {
-            _displayQuestion.Render();
+            var defaultValueValidation = _validationResultComponent.Run(_defaultValueComponent.Value);
 
-            var value = _input.WaitForInput().InterruptKey.Value;
-            _onKey.OnKey(value);
-            if (_onKey.IsInterrupted)
+            if (defaultValueValidation.HasError)
             {
-                return default(TResult);
-            }
-
-            if (value == ConsoleKey.Enter && _defaultValueComponent.HasDefault)
-            {
-                var defaultValueValidation = _validationResultComponent.Run(_defaultValueComponent.Value);
-
-                if (defaultValueValidation.HasError)
-                {
-                    _errorComponent.Render(defaultValueValidation.ErrorMessage);
-                    return Prompt();
-                }
-
-                if (_confirmComponent.Confirm(_defaultValueComponent.Value))
-                {
-                    return Prompt();
-                }
-
-                return _defaultValueComponent.Value;
-            }
-
-            var validationResult = _validationValueComponent.Run(value);
-            if (validationResult.HasError)
-            {
-                _errorComponent.Render(validationResult.ErrorMessage);
+                _errorComponent.Render(defaultValueValidation.ErrorMessage);
                 return Prompt();
             }
 
-            TResult answer = _parseComponent.Parse(value);
-            validationResult = _validationResultComponent.Run(answer);
-
-            if (validationResult.HasError)
-            {
-                _errorComponent.Render(validationResult.ErrorMessage);
-                return Prompt();
-            }
-
-            if (_confirmComponent.Confirm(answer))
+            if (_confirmComponent.Confirm(_defaultValueComponent.Value))
             {
                 return Prompt();
             }
 
-            return answer;
+            return _defaultValueComponent.Value;
         }
+
+        var validationResult = _validationValueComponent.Run(value);
+        if (validationResult.HasError)
+        {
+            _errorComponent.Render(validationResult.ErrorMessage);
+            return Prompt();
+        }
+
+        TResult answer = _parseComponent.Parse(value);
+        validationResult = _validationResultComponent.Run(answer);
+
+        if (validationResult.HasError)
+        {
+            _errorComponent.Render(validationResult.ErrorMessage);
+            return Prompt();
+        }
+
+        if (_confirmComponent.Confirm(answer))
+        {
+            return Prompt();
+        }
+
+        return answer;
     }
 }

@@ -1,12 +1,11 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Components
+namespace InquirerCS.Components;
+
+internal class NoConfirmationComponent<TResult> : IConfirmComponent<TResult>
 {
-    internal class NoConfirmationComponent<TResult> : IConfirmComponent<TResult>
+    public bool Confirm(TResult result)
     {
-        public bool Confirm(TResult result)
-        {
-            return false;
-        }
+        return false;
     }
 }

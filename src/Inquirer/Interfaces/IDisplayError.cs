@@ -1,7 +1,6 @@
-﻿namespace InquirerCS.Interfaces
+﻿namespace InquirerCS.Interfaces;
+
+public interface IDisplayErrorComponent
 {
-    public interface IDisplayErrorComponent
-    {
-        void Render(string errorMessage);
-    }
+    void Render(string errorMessage);
 }

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using InquirerCS.Interfaces;
 
-namespace InquirerCS.Components
+namespace InquirerCS.Components;
+
+internal class NonComparableDefaultListValueComponent<TResult> : IDefaultValueComponent<TResult>
 {
-    internal class NonComparableDefaultListValueComponent<TResult> : IDefaultValueComponent<TResult>
+    public NonComparableDefaultListValueComponent()
     {
-        public NonComparableDefaultListValueComponent()
-        {
             HasDefault = false;
             Value = default(TResult);
         }
 
-        public NonComparableDefaultListValueComponent(List<TResult> choices, Func<TResult, bool> compareTo)
-        {
+    public NonComparableDefaultListValueComponent(List<TResult> choices, Func<TResult, bool> compareTo)
+    {
             HasDefault = true;
 
             if (!choices.Any(item => compareTo(item)))
@@ -31,8 +31,7 @@ namespace InquirerCS.Components
             Value = choices[0];
         }
 
-        public bool HasDefault { get; }
+    public bool HasDefault { get; }
 
-        public TResult Value { get; }
-    }
+    public TResult Value { get; }
 }

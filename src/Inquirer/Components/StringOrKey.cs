@@ -1,17 +1,16 @@
 ﻿using System;
 
-namespace InquirerCS.Components
+namespace InquirerCS.Components;
+
+public class StringOrKey
 {
-    public class StringOrKey
+    internal StringOrKey(string value, ConsoleKey? interruptKey)
     {
-        internal StringOrKey(string value, ConsoleKey? interruptKey)
-        {
             Value = value;
             InterruptKey = interruptKey;
         }
 
-        public ConsoleKey? InterruptKey { get; }
+    public ConsoleKey? InterruptKey { get; }
 
-        public string Value { get; }
-    }
+    public string Value { get; }
 }

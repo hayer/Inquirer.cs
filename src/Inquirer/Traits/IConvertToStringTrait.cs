@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IConvertToStringTrait<TResult>
 {
-    public interface IConvertToStringTrait<TResult>
-    {
-        IConvertToStringComponent<TResult> Convert { get; set; }
-    }
+    IConvertToStringComponent<TResult> Convert { get; set; }
 }

@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IParseTrait<TInput, TResult>
 {
-    public interface IParseTrait<TInput, TResult>
-    {
-        IParseComponent<TInput, TResult> Parse { get; set; }
-    }
+    IParseComponent<TInput, TResult> Parse { get; set; }
 }

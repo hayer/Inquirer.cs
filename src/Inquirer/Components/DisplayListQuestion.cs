@@ -5,28 +5,28 @@ using System.Text;
 using InquirerCS.Interfaces;
 using InquirerCS.Traits;
 
-namespace InquirerCS.Components
+namespace InquirerCS.Components;
+
+internal class DisplayListQuestion<TList, TResult> : IRenderQuestionComponent where TList : IEnumerable<TResult>
 {
-    internal class DisplayListQuestion<TList, TResult> : IRenderQuestionComponent where TList : IEnumerable<TResult>
+    private IConsole _console;
+
+    private IConvertToStringTrait<TResult> _convert;
+
+    private IDefaultTrait<List<TResult>> _default;
+
+    private string _message;
+
+    public DisplayListQuestion(string message, IConvertToStringTrait<TResult> convert, IDefaultTrait<List<TResult>> @default, IConsole console)
     {
-        private IConsole _console;
-
-        private IConvertToStringTrait<TResult> _convert;
-
-        private IDefaultTrait<List<TResult>> _default;
-
-        private string _message;
-
-        public DisplayListQuestion(string message, IConvertToStringTrait<TResult> convert, IDefaultTrait<List<TResult>> @default, IConsole console)
-        {
             _message = message;
             _convert = convert;
             _default = @default;
             _console = console;
         }
 
-        public void Render()
-        {
+    public void Render()
+    {
             StringBuilder sb = new StringBuilder();
 
             _console.Clear();
@@ -43,5 +43,4 @@ namespace InquirerCS.Components
             _console.Write(sb.ToString());
             Consts.CURSOR_OFFSET = _console.CursorTop + 2;
         }
-    }
 }

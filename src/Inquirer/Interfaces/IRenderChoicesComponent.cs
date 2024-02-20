@@ -1,11 +1,10 @@
-﻿namespace InquirerCS.Interfaces
+﻿namespace InquirerCS.Interfaces;
+
+public interface IRenderChoices<TResult>
 {
-    public interface IRenderChoices<TResult>
-    {
-        void Render();
+    void Render();
 
-        void Select(int index);
+    void Select(int index);
 
-        void UnSelect(int index);
-    }
+    void UnSelect(int index);
 }

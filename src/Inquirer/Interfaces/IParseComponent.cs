@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace InquirerCS.Interfaces
+namespace InquirerCS.Interfaces;
+
+public interface IParseComponent<TInput, TResult>
 {
-    public interface IParseComponent<TInput, TResult>
-    {
-        Func<TInput, TResult> Parse { get; }
-    }
+    Func<TInput, TResult> Parse { get; }
 }

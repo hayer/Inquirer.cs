@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using InquirerCS.Interfaces;
 using InquirerCS.Traits;
 
-namespace InquirerCS.Components
+namespace InquirerCS.Components;
+
+internal class DisplayExtendedChoices<TResult> : IRenderChoices<TResult>
 {
-    internal class DisplayExtendedChoices<TResult> : IRenderChoices<TResult>
+    private Dictionary<ConsoleKey, TResult> _choicesDictionary;
+
+    private IConsole _console;
+
+    private IConvertToStringTrait<TResult> _convertToString;
+
+    public DisplayExtendedChoices(Dictionary<ConsoleKey, TResult> choicesDictionary, IConvertToStringTrait<TResult> convertToString, IConsole console)
     {
-        private Dictionary<ConsoleKey, TResult> _choicesDictionary;
-
-        private IConsole _console;
-
-        private IConvertToStringTrait<TResult> _convertToString;
-
-        public DisplayExtendedChoices(Dictionary<ConsoleKey, TResult> choicesDictionary, IConvertToStringTrait<TResult> convertToString, IConsole console)
-        {
             _choicesDictionary = choicesDictionary;
             _convertToString = convertToString;
             _console = console;
         }
 
-        public void Render()
-        {
+    public void Render()
+    {
             int index = 0;
             foreach (var choice in _choicesDictionary)
             {
@@ -30,12 +30,11 @@ namespace InquirerCS.Components
             }
         }
 
-        public void Select(int index)
-        {
+    public void Select(int index)
+    {
         }
 
-        public void UnSelect(int index)
-        {
+    public void UnSelect(int index)
+    {
         }
-    }
 }

@@ -2,14 +2,14 @@
 using System.Linq;
 using InquirerCS.Interfaces;
 
-namespace InquirerCS.Components
-{
-    internal class PagingComponent<TResult> : IPagingComponent<TResult>
-    {
-        private int _page;
+namespace InquirerCS.Components;
 
-        public PagingComponent(List<TResult> choices, int pageSize, int page = 0)
-        {
+internal class PagingComponent<TResult> : IPagingComponent<TResult>
+{
+    private int _page;
+
+    public PagingComponent(List<TResult> choices, int pageSize, int page = 0)
+    {
             _page = page;
 
             while (page * pageSize < choices.Count)
@@ -19,26 +19,26 @@ namespace InquirerCS.Components
             }
         }
 
-        public List<TResult> CurrentPage
+    public List<TResult> CurrentPage
+    {
+        get
         {
-            get
-            {
                 return PagedChoices[CurrentPageNumber];
             }
-        }
+    }
 
-        public int CurrentPageNumber
+    public int CurrentPageNumber
+    {
+        get
         {
-            get
-            {
                 return _page;
             }
-        }
+    }
 
-        public Dictionary<int, List<TResult>> PagedChoices { get; } = new Dictionary<int, List<TResult>>();
+    public Dictionary<int, List<TResult>> PagedChoices { get; } = new Dictionary<int, List<TResult>>();
 
-        public bool Next()
-        {
+    public bool Next()
+    {
             if (PagedChoices.ContainsKey(_page + 1))
             {
                 _page += 1;
@@ -48,8 +48,8 @@ namespace InquirerCS.Components
             return false;
         }
 
-        public bool Previous()
-        {
+    public bool Previous()
+    {
             if (_page - 1 >= 0)
             {
                 _page -= 1;
@@ -58,5 +58,4 @@ namespace InquirerCS.Components
 
             return false;
         }
-    }
 }

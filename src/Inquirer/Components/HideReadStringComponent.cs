@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using InquirerCS.Interfaces;
 
-namespace InquirerCS.Components
-{
-    internal class HideReadStringComponent : IWaitForInputComponent<StringOrKey>
-    {
-        private IConsole _console;
+namespace InquirerCS.Components;
 
-        public HideReadStringComponent(IConsole console)
-        {
+internal class HideReadStringComponent : IWaitForInputComponent<StringOrKey>
+{
+    private IConsole _console;
+
+    public HideReadStringComponent(IConsole console)
+    {
             _console = console;
         }
 
-        public Func<char, bool> AllowTypeFn { get; set; }
+    public Func<char, bool> AllowTypeFn { get; set; }
 
-        public List<ConsoleKey> IntteruptedKeys { get; set; } = new List<ConsoleKey>();
+    public List<ConsoleKey> IntteruptedKeys { get; set; } = new List<ConsoleKey>();
 
-        public StringOrKey WaitForInput()
-        {
+    public StringOrKey WaitForInput()
+    {
             Stack<char> stringBuilder = new Stack<char>();
 
             ConsoleKeyInfo key;
@@ -82,5 +82,4 @@ namespace InquirerCS.Components
 
             return new StringOrKey(string.Join(string.Empty, stringBuilder.ToArray().Reverse()), null);
         }
-    }
 }

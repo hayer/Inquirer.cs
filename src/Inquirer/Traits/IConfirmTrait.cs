@@ -1,9 +1,8 @@
 ﻿using InquirerCS.Interfaces;
 
-namespace InquirerCS.Traits
+namespace InquirerCS.Traits;
+
+public interface IConfirmTrait<TResult>
 {
-    public interface IConfirmTrait<TResult>
-    {
-        IConfirmComponent<TResult> Confirm { get; set; }
-    }
+    IConfirmComponent<TResult> Confirm { get; set; }
 }
